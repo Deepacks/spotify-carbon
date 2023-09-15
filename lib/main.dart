@@ -1,38 +1,36 @@
 import 'package:flutter/material.dart';
 
-import 'package:spotiflutter/spotiflutter.dart';
+import 'views/home_view.dart';
 
 void main() {
+  Paint.enableDithering = true;
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final _spotiflutter = Spotiflutter((_) {});
-
-  bool _isConnected = false;
-
-  @override
-  void didChangeDependencies() async {
-    _isConnected = await _spotiflutter.isConnected ?? false;
-    if (!_isConnected) _spotiflutter.connect();
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: SafeArea(
-          child: Placeholder(),
+    return MaterialApp(
+      theme: ThemeData(
+        colorScheme: const ColorScheme(
+          brightness: Brightness.dark,
+          primary: Color(0xffCE1C32),
+          onPrimary: Colors.white,
+          secondary: Color(0xff672026),
+          onSecondary: Colors.white,
+          error: Colors.red,
+          onError: Colors.white,
+          background: Colors.transparent,
+          onBackground: Colors.white,
+          surface: Color(0xff27252C),
+          onSurface: Colors.white,
         ),
+        useMaterial3: true,
       ),
+      home: const HomeView(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
