@@ -1,0 +1,3 @@
+[submodule "plugins/spotiflutter"]
+	path = plugins/spotiflutter
+	url = git@github.com:ByteMeUp/spotiflutter.git
