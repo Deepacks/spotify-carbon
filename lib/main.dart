@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'views/home_view.dart';
 
 void main() {
   Paint.enableDithering = true;
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
