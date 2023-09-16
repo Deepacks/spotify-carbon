@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
 class Navbar extends StatelessWidget {
+  final int currentPageIndex;
+  final void Function(int) onDestinationSelected;
+
   const Navbar({
     super.key,
     required this.currentPageIndex,
     required this.onDestinationSelected,
   });
-
-  final int currentPageIndex;
-  final void Function(int) onDestinationSelected;
 
   @override
   Widget build(BuildContext context) {

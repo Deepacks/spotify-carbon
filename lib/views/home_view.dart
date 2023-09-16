@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:spotiflutter/spotiflutter.dart';
 
+import '../widgets/home/home.dart';
+import '../widgets/home/player_mini.dart';
 import '../widgets/gradient_container.dart';
-import '../widgets/navbar.dart';
+import '../widgets/home/navbar.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -33,20 +35,18 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     return GradientContainer(
-      child: Scaffold(
-        bottomNavigationBar: Navbar(
-          currentPageIndex: currentPageIndex,
-          onDestinationSelected: onDestinationSelected,
-        ),
-        body: SafeArea(
-          child: [
-            const Center(
-              child: Text("Home"),
-            ),
-            const Center(
-              child: Text("Search"),
-            ),
-          ][currentPageIndex],
+      child: SafeArea(
+        child: Scaffold(
+          bottomNavigationBar: Navbar(
+            currentPageIndex: currentPageIndex,
+            onDestinationSelected: onDestinationSelected,
+          ),
+          body: const Stack(
+            children: [
+              Home(),
+              PlayerMini(),
+            ],
+          ),
         ),
       ),
     );
