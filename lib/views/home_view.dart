@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:spotiflutter/spotiflutter.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../widgets/home/home.dart';
-import '../widgets/home/player_mini.dart';
+import '../providers/spotify_remote_provider.dart';
+
 import '../widgets/gradient_container.dart';
+import '../widgets/home/home.dart';
 import '../widgets/home/navbar.dart';
+import '../widgets/home/player_mini.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  HomeViewState createState() => HomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
-  final _spotiflutter = Spotiflutter((_) {});
-
-  bool _isRemoteConnected = false;
-
+class HomeViewState extends ConsumerState<HomeView> {
   @override
   void didChangeDependencies() async {
-    _isRemoteConnected = await _spotiflutter.isConnected ?? false;
-    if (!_isRemoteConnected) _spotiflutter.connect();
+    final spotifyRemote = ref.read(spotifyRemoteProvider);
+
+    final isConnected = await spotifyRemote.isConnected ?? false;
+    if (!isConnected) await spotifyRemote.connect();
+
     super.didChangeDependencies();
   }
 
