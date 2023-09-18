@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../providers/track_provider.dart';
 
 import '../glass.dart';
 
-class PlayerMini extends StatelessWidget {
+class PlayerMini extends ConsumerWidget {
   const PlayerMini({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentTrack = ref.watch(trackProvider);
+
     return Positioned(
       left: 10.0,
       bottom: 10.0,
@@ -25,15 +30,15 @@ class PlayerMini extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 13.0),
-                const Column(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Furthest Thing",
-                      style: TextStyle(fontSize: 17),
+                      currentTrack,
+                      style: const TextStyle(fontSize: 17),
                     ),
-                    Text(
+                    const Text(
                       "Drake",
                       style: TextStyle(
                         color: Color.fromARGB(255, 212, 154, 159),

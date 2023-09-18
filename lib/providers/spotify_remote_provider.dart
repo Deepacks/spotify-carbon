@@ -1,7 +1,9 @@
-import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:spotiflutter/spotiflutter.dart';
 
-part 'spotify_remote_provider.g.dart';
+import 'track_provider.dart';
 
-@riverpod
-Spotiflutter spotifyRemote(SpotifyRemoteRef ref) => Spotiflutter((track) => {});
+final spotifyRemoteProvider = Provider<Spotiflutter>((ref) {
+  final onTrackChange = ref.read(trackProvider.notifier).setTrack;
+  return Spotiflutter(onTrackChange);
+});
