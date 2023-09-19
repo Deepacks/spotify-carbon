@@ -1,16 +1,18 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class TrackNotifier extends Notifier<String> {
+import '../models/track_model.dart';
+
+class TrackNotifier extends Notifier<Track> {
   @override
-  String build() {
-    return "";
+  Track build() {
+    return Track('', '');
   }
 
-  void setTrack(String track) {
+  void setTrack(Track track) {
     state = track;
   }
 }
 
-final trackProvider = NotifierProvider<TrackNotifier, String>(
+final trackProvider = NotifierProvider<TrackNotifier, Track>(
   () => TrackNotifier(),
 );

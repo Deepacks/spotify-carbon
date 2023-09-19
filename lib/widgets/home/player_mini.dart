@@ -35,12 +35,12 @@ class PlayerMini extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      currentTrack,
+                      currentTrack.name,
                       style: const TextStyle(fontSize: 17),
                     ),
-                    const Text(
-                      "Drake",
-                      style: TextStyle(
+                    Text(
+                      currentTrack.artist,
+                      style: const TextStyle(
                         color: Color.fromARGB(255, 212, 154, 159),
                       ),
                     ),
