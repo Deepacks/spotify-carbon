@@ -21,7 +21,12 @@ class HomeViewState extends ConsumerState<HomeView> {
     final spotifyRemote = ref.read(spotifyRemoteProvider);
 
     final isConnected = await spotifyRemote.isConnected ?? false;
-    if (!isConnected) await spotifyRemote.connect();
+    if (!isConnected) {
+      await spotifyRemote.connect(
+        '75976a3f1c984aaa9eb0d9cb7df73a6d',
+        'http://com.bytemeup.spotify_carbon',
+      );
+    }
 
     super.didChangeDependencies();
   }
