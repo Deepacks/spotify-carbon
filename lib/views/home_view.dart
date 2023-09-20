@@ -5,7 +5,7 @@ import '../providers/spotify_remote_provider.dart';
 
 import '../widgets/gradient_container.dart';
 import '../widgets/home/home.dart';
-import '../widgets/home/navbar.dart';
+// import '../widgets/home/navbar.dart';
 import '../widgets/home/player_mini.dart';
 
 class HomeView extends ConsumerStatefulWidget {
@@ -40,14 +40,14 @@ class HomeViewState extends ConsumerState<HomeView> {
 
   @override
   Widget build(BuildContext context) {
-    return GradientContainer(
+    return const GradientContainer(
       child: SafeArea(
         child: Scaffold(
-          bottomNavigationBar: Navbar(
-            currentPageIndex: currentPageIndex,
-            onDestinationSelected: onDestinationSelected,
-          ),
-          body: const Stack(
+          // bottomNavigationBar: Navbar(
+          //   currentPageIndex: currentPageIndex,
+          //   onDestinationSelected: onDestinationSelected,
+          // ),
+          body: Stack(
             children: [
               Home(),
               PlayerMini(),
