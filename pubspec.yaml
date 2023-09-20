@@ -70,6 +70,7 @@ flutter:
     - assets/icons/next.svg
     - assets/icons/pause.svg
     - assets/icons/play.svg
+    - assets/icons/prev.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

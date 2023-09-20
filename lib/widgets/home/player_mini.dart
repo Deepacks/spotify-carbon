@@ -23,6 +23,10 @@ class PlayerMini extends ConsumerWidget {
     await spotifyRemote.skipNext();
   }
 
+  void skipPrev(Spotiflutter spotifyRemote) async {
+    await spotifyRemote.skipPrev();
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final spotifyRemote = ref.read(spotifyRemoteProvider);
@@ -65,6 +69,13 @@ class PlayerMini extends ConsumerWidget {
                       ),
                     ],
                   ),
+                ),
+                SvgButton(
+                  onPressed: () => skipPrev(spotifyRemote),
+                  assetName: 'assets/icons/prev.svg',
+                ),
+                const SizedBox(
+                  width: 5,
                 ),
                 SvgButton(
                   backgroundColor: Theme.of(context).colorScheme.primary,
