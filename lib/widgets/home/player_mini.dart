@@ -42,7 +42,8 @@ class PlayerMini extends ConsumerWidget {
         child: SizedBox(
           height: 95.0,
           child: Padding(
-            padding: const EdgeInsets.all(13.0),
+            padding:
+                const EdgeInsets.only(top: 13, right: 13, bottom: 13, left: 18),
             child: Row(
               children: [
                 // ClipRRect(
