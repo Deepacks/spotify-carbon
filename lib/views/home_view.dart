@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../providers/connection_state_provider.dart';
 import '../providers/spotify_remote_provider.dart';
-
 import '../widgets/gradient_container.dart';
 import '../widgets/home/home.dart';
 // import '../widgets/home/navbar.dart';
@@ -19,10 +19,10 @@ class HomeViewState extends ConsumerState<HomeView> {
   @override
   void didChangeDependencies() async {
     final spotifyRemote = ref.read(spotifyRemoteProvider);
+    final connectionState = ref.read(connectionStateProvider);
 
-    final isConnected = await spotifyRemote.isConnected ?? false;
-    if (!isConnected) {
-      await spotifyRemote.connect(
+    if (!connectionState.connected) {
+      await spotifyRemote.connectToSpotify(
         '75976a3f1c984aaa9eb0d9cb7df73a6d',
         'http://com.bytemeup.spotify_carbon',
       );
