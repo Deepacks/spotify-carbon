@@ -42,17 +42,14 @@ class PlayerMini extends ConsumerWidget {
         child: SizedBox(
           height: 95.0,
           child: Padding(
-            padding:
-                const EdgeInsets.only(top: 13, right: 13, bottom: 13, left: 18),
+            padding: const EdgeInsets.only(
+              top: 13,
+              right: 13,
+              bottom: 13,
+              left: 18,
+            ),
             child: Row(
               children: [
-                // ClipRRect(
-                //   borderRadius: BorderRadius.circular(10.0),
-                //   child: Image.network(
-                //     'https://cdns-images.dzcdn.net/images/cover/64ec37a4cf512c7810c40ba0d318ff1e/350x350.jpg',
-                //   ),
-                // ),
-                // const SizedBox(width: 13.0),
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

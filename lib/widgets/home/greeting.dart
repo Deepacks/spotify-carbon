@@ -4,6 +4,7 @@ import 'package:spotiflutter/web/models/user.dart';
 
 import '../../providers/secure_storage_provider.dart';
 import '../../providers/spotify_remote_provider.dart';
+import '../page_padding.dart';
 
 class Greeting extends ConsumerStatefulWidget {
   const Greeting({super.key});
@@ -16,16 +17,19 @@ class _GreetingState extends ConsumerState<Greeting> {
   User? user;
 
   void fetchUser() async {
-    final secureStorage = ref.read(secureStorageProvider);
-    final token = await secureStorage.read(key: 'token');
-
+    final token = await ref.read(secureStorageProvider).read(key: 'token');
     final spotifyRemote = ref.read(spotifyRemoteProvider);
 
-    user = await spotifyRemote.webApi.userApi.getCurrentUserProfile(token!);
+    final r = await spotifyRemote.webApi.userApi.getCurrentUserProfile(token!);
+
+    setState(() {
+      user = r;
+    });
   }
 
   @override
   void initState() {
+    fetchUser();
     super.initState();
   }
 
@@ -34,23 +38,29 @@ class _GreetingState extends ConsumerState<Greeting> {
     final DateTime now = DateTime.now();
     final int currentHour = now.hour;
 
-    String greeting = ', ${user?.displayName}';
+    String greeting = '';
 
     if (currentHour >= 6 && currentHour < 13) {
-      greeting = 'Good morning$greeting';
+      greeting = 'Good morning';
     } else if (currentHour >= 13 && currentHour < 18) {
-      greeting = 'Good afternoon$greeting';
+      greeting = 'Good afternoon';
     } else if (currentHour >= 18 && currentHour < 23) {
-      greeting = 'Good evening$greeting';
+      greeting = 'Good evening';
     } else {
-      greeting = 'Good night$greeting';
+      greeting = 'Good night';
     }
 
-    return Text(
-      greeting,
-      style: const TextStyle(
-        fontSize: 30,
-        fontWeight: FontWeight.w500,
+    if (user != null) {
+      greeting = '$greeting, ${user?.displayName}';
+    }
+
+    return PagePadding(
+      Text(
+        greeting,
+        style: const TextStyle(
+          fontSize: 30,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

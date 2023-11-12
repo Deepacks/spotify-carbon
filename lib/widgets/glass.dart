@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 
 class Glass extends StatelessWidget {
   final Widget child;
+  final Color color;
 
   const Glass({
     super.key,
     required this.child,
+    this.color = Colors.white,
   });
 
   @override
@@ -19,8 +21,8 @@ class Glass extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.white.withOpacity(0.2),
-                Colors.white.withOpacity(0.3),
+                color.withOpacity(0.2),
+                color.withOpacity(0.3),
               ],
               begin: AlignmentDirectional.topStart,
               end: AlignmentDirectional.bottomEnd,
